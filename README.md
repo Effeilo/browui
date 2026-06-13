@@ -39,14 +39,14 @@ Eight interface patterns rebuilt with modern HTML and CSS only. Each example sta
 
 | Component |  |  |
 | --- | --- | --- | 
-| <img src="./assets/carousel.svg" alt="logo carousel" width="50"/> | Carousel | Native horizontal scrolling with `scroll-snap`, custom scrollbars and controls via `::scroll-button`. |
-| <img src="./assets/modal.svg" alt="logo modal" width="50"/> | Modal | A real modal with `<dialog>`, opened without JavaScript via `commandfor` and `command="show-modal"`. |  
-| <img src="./assets/popover.svg" alt="logo popover" width="50"/> | Popover | A non-modal panel with `popover`, `popovertarget` and native light dismiss. |  
-| <img src="./assets/accordion.svg" alt="logo accordion" width="50"/> | Accordion | Using `<details>`, `<summary>`, and the `name` attribute that turns a group into an exclusive accordion. |  
-| <img src="./assets/tabs.svg" alt="logo tabs" width="50"/> | Tabs | Pure CSS with a real radio group, `:checked` and `:has()` on the parent. |  
-| <img src="./assets/tooltip.svg" alt="logo tooltip" width="50"/> | Tooltip | Positioned via `anchor-name` and `position-anchor`. The tooltip follows its anchor without JS. | 
-| <img src="./assets/progress-bar.svg" alt="logo progress bar" width="50"/> | Progress Bar | A top progress bar driven by scroll with `animation-timeline`. |   
-| <img src="./assets/switch.svg" alt="logo Switch" width="50"/> | Switch | Styled checkboxes with `:has()` to modify the parent based on state. |  
+| <img src="./assets/carousel.svg" alt="logo carousel" width="50"/> | [Carousel](https://github.com/Effeilo/browui/tree/main/ui-components/carousel) | Native horizontal scrolling with `scroll-snap`, custom scrollbars and controls via `::scroll-button`. |
+| <img src="./assets/modal.svg" alt="logo modal" width="50"/> | [Modal](https://github.com/Effeilo/browui/tree/main/ui-components/modal) | A real modal with `<dialog>`, opened without JavaScript via `commandfor` and `command="show-modal"`. |  
+| <img src="./assets/popover.svg" alt="logo popover" width="50"/> | [Popover](https://github.com/Effeilo/browui/tree/main/ui-components/popover) | A non-modal panel with `popover`, `popovertarget` and native light dismiss. |  
+| <img src="./assets/accordion.svg" alt="logo accordion" width="50"/> | [Accordion](https://github.com/Effeilo/browui/tree/main/ui-components/accordion) | Using `<details>`, `<summary>`, and the `name` attribute that turns a group into an exclusive accordion. |  
+| <img src="./assets/tabs.svg" alt="logo tabs" width="50"/> | [Tabs](https://github.com/Effeilo/browui/tree/main/ui-components/tabs) | Pure CSS with a real radio group, `:checked` and `:has()` on the parent. |  
+| <img src="./assets/tooltip.svg" alt="logo tooltip" width="50"/> | [Tooltip](https://github.com/Effeilo/browui/tree/main/ui-components/tooltip) | Positioned via `anchor-name` and `position-anchor`. The tooltip follows its anchor without JS. | 
+| <img src="./assets/progress-bar.svg" alt="logo progress bar" width="50"/> | [Progress Bar](https://github.com/Effeilo/browui/tree/main/ui-components/progress-bar) | A top progress bar driven by scroll with `animation-timeline`. |   
+| <img src="./assets/switch.svg" alt="logo Switch" width="50"/> | [Switch](https://github.com/Effeilo/browui/tree/main/ui-components/xwitch) | Styled checkboxes with `:has()` to modify the parent based on state. |  
 
 ### Browser User Interface
 
@@ -54,10 +54,10 @@ Four browser interface behaviors styled with modern CSS only. Each example keeps
 
 | Component |  |  |
 | --- | --- | --- | 
-| <img src="./assets/selection-search.svg" alt="logo Selection & search" width="50"/> | Selection & search | Selected text and find-in-page matches styled with `::selection`, `::search-text` and `::search-text:current`. |
-| <img src="./assets/scrollbar.svg" alt="logo scrollbar" width="50"/> | Themed scrollbars | Custom scrollbars with WebKit pseudo-elements and Firefox's `scrollbar-color`, scoped per rendering engine. |  
-| <img src="./assets/focus.svg" alt="logo focus" width="50"/> | Focus Management | Accessible focus states with `:focus-visible`, keeping keyboard navigation clear without styling every click. |  
-| <img src="./assets/form.svg" alt="logo form" width="50"/> | Form UX | Native form controls themed with `accent-color`, `::placeholder`, `:user-valid`, and `:user-invalid`. |  
+| <img src="./assets/selection-search.svg" alt="logo Selection & search" width="50"/> | [Selection & search](https://github.com/Effeilo/browui/tree/main/ui-components/selection-search) | Selected text and find-in-page matches styled with `::selection`, `::search-text` and `::search-text:current`. |
+| <img src="./assets/scrollbar.svg" alt="logo scrollbar" width="50"/> | [Themed scrollbars](https://github.com/Effeilo/browui/tree/main/ui-components/scrollbar) | Custom scrollbars with WebKit pseudo-elements and Firefox's `scrollbar-color`, scoped per rendering engine. |  
+| <img src="./assets/focus.svg" alt="logo focus" width="50"/> | [Focus Management](https://github.com/Effeilo/browui/tree/main/ui-components/focus) | Accessible focus states with `:focus-visible`, keeping keyboard navigation clear without styling every click. |  
+| <img src="./assets/form.svg" alt="logo form" width="50"/> | [Form UX](https://github.com/Effeilo/browui/tree/main/ui-components/form) | Native form controls themed with `accent-color`, `::placeholder`, `:user-valid`, and `:user-invalid`. |  
 
 ## Pattern Status
 
