@@ -1,0 +1,83 @@
+/* ----------------------------------------------------------------------------
+ * Anchor
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Tooltipped term: dashed underline + accent color signals it's
+ * interactive. `position: relative` is the fallback positioning
+ * context for the tooltip.
+ */
+
+.anchor {
+  cursor: help;
+  position: relative;
+  /* add your styles here */
+}
+
+/**
+ * Anchor name registrations: each term gets a unique `--aN` so
+ * its tooltip can target it explicitly via `position-anchor`.
+ */
+
+.anchor-1 { 
+  anchor-name: --a1; 
+}
+
+/* ----------------------------------------------------------------------------
+ * Tooltip Box
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Tooltip bubble. Hidden by default (opacity 0, pointer-events none).
+ * Includes a classic absolute-positioning fallback at the bottom so
+ * unsupported browsers still get a centered tooltip above the term.
+ */
+
+.tooltip {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  /* add your styles here */
+
+  /**
+   * Classic positioning fallback (used when anchor-positioning
+   * is not supported): center horizontally above the parent.
+   */
+  bottom: calc(100% + 8px);
+  left: 50%;
+  translate: -50% 0;
+}
+
+/* ----------------------------------------------------------------------------
+ * Anchor Positioning Override
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * When the browser supports `anchor-name`, override the fallback
+ * positioning with proper anchor-based coordinates: each tooltip
+ * sits above the top edge of its anchor and is horizontally
+ * centered on the anchor's center.
+ */
+
+@supports (anchor-name: --a) {
+  .tooltip-1 {
+    position-anchor: --a1;
+    bottom: anchor(top);
+    left: anchor(center);
+    margin-bottom: 8px;
+    translate: -50% 0;
+  }
+}
+
+/**
+ * Reveal the tooltip on hover, focus, or focus-within (keyboard
+ * users). Animates opacity and removes the slight Y translate.
+ */
+
+.anchor:hover .tooltip,
+.anchor:focus .tooltip,
+.anchor:focus-within .tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}

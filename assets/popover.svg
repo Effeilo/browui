@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 68" width="96" height="68">
+  <mask id="popover-cut">
+    <rect width="96" height="68" fill="white"></rect>
+    <polygon points="42,42 48,55 54,42" fill="black"></polygon>
+  </mask>
+  <g mask="url(#popover-cut)">
+    <rect x="38" y="52" width="20" height="6" rx="1.5" fill="#ffffff"></rect>
+  </g>
+  <rect x="18" y="9" width="60" height="34" rx="3" fill="#374151"></rect>
+  <polygon points="42,42 48,55 54,42" fill="#374151"></polygon>
+  <rect x="24" y="14" width="20" height="2.5" rx="1.25" fill="#ffffff"></rect>
+  <rect x="24" y="22" width="38" height="1.5" rx="0.75" fill="#ffffff"></rect>
+  <rect x="24" y="27" width="32" height="1.5" rx="0.75" fill="#ffffff"></rect>
+  <rect x="24" y="32" width="26" height="1.5" rx="0.75" fill="#ffffff"></rect>
+  <rect x="24" y="37" width="20" height="1.5" rx="0.75" fill="#ffffff"></rect>
+</svg>

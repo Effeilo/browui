@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 68" width="96" height="68">
+  <mask id="modal-cut">
+    <rect width="96" height="68" fill="white"></rect>
+    <rect x="28" y="13" width="40" height="32" rx="3" fill="black"></rect>
+  </mask>
+  <g mask="url(#modal-cut)">
+    <rect x="16" y="5" width="64" height="48" rx="3" fill="#ffffff"></rect>
+  </g>
+  <rect x="28" y="13" width="40" height="32" rx="3" fill="#374151"></rect>
+  <rect x="33" y="19" width="18" height="2.5" rx="1.25" fill="#ffffff"></rect>
+  <rect x="33" y="25" width="24" height="1.5" rx="0.75" fill="#ffffff"></rect>
+  <rect x="33" y="29" width="18" height="1.5" rx="0.75" fill="#ffffff"></rect>
+  <rect x="54" y="38" width="10" height="3" rx="1.5" fill="#ffffff"></rect>
+  <path d="M 60 18 L 64 22 M 64 18 L 60 22" stroke="#ffffff" stroke-width="1" stroke-linecap="round"></path>
+</svg>

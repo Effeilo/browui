@@ -1,0 +1,119 @@
+/* ----------------------------------------------------------------------------
+ * Modal
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Native `<dialog>` panel.
+ *
+ * The dialog element stays visually neutral and acts as the modal
+ * container in the top layer. Use `.modal-inner` for the visible
+ * surface and custom presentation styles.
+ */
+
+.modal {
+  background: transparent;
+  border: none;
+  margin: auto;
+  overflow: visible;
+  padding: 0;
+  /* add your styles here */
+}
+
+/**
+ * Visible modal content wrapper.
+ * Use this element for custom spacing, surface, border, shadow, etc.
+ */
+
+.modal-inner {
+  /* add your styles here */
+}
+
+/* ----------------------------------------------------------------------------
+ * Modal close button
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Explicit close control.
+ */
+
+.modal-close {
+  /* add your styles here */
+}
+
+/* ----------------------------------------------------------------------------
+ * Modal Animation (Top Layer)
+ * ---------------------------------------------------------------------------- */
+
+ /**
+ * Closed-state styling for the modal panel.
+ *
+ * Uses the new `transition-behavior` / `allow-discrete` mechanism
+ * so the `display: none → block` and top-layer `overlay` changes
+ * animate smoothly instead of snapping. Without `allow-discrete`,
+ * the modal would teleport in and out.
+ */
+
+.modal {
+  opacity: 0;
+  transition:
+    opacity 240ms,
+    overlay 240ms allow-discrete,
+    display 240ms allow-discrete;
+}
+
+/**
+ * Open state: full opacity. Selectors cover
+ * modal dialogs (`:open`), and the
+ * fallback `[open]` attribute selector for legacy dialog support.
+ */
+
+.modal:open,
+dialog.modal[open] {
+  opacity: 1;
+}
+
+/**
+ * Initial keyframe override: required so the entrance transition
+ * runs on the first open after the discrete `display` change.
+ */
+
+@starting-style {
+  .modal:open,
+  dialog.modal[open] {
+    opacity: 0;
+  }
+}
+
+/**
+ * Backdrop transition hook.
+ *
+ * Add a background here if you want a visible overlay.
+ */
+
+.modal::backdrop {
+  opacity: 0;
+  transition:
+    opacity 240ms,
+    overlay 240ms allow-discrete,
+    display 240ms allow-discrete;
+}
+
+/**
+ * Open backdrop becomes visible.
+ */
+
+.modal:open::backdrop,
+dialog.modal[open]::backdrop { 
+  opacity: 1; 
+}
+
+/**
+ * Initial keyframe override for the backdrop, same reason as above.
+ */
+
+@starting-style {
+  .modal:open::backdrop,
+  dialog.modal[open]::backdrop { 
+    opacity: 0; 
+  }
+}

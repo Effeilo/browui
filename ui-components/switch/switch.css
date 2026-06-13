@@ -1,0 +1,98 @@
+/* ----------------------------------------------------------------------------
+ * Switch Layout
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Switch row: label + hidden checkbox + visual track.
+ */
+
+.switch {
+  --switch-thumb-translate: 20px;
+
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  /* add your styles here */
+}
+
+/**
+ * Visually hide the actual checkbox while keeping it accessible
+ * (still reachable by keyboard and screen readers via the label).
+ */
+
+.switch-input {
+  block-size: 1px;
+  inline-size: 1px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* ----------------------------------------------------------------------------
+ * Switch Track & Thumb
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Track.
+ */
+
+.switch-track {
+  position: relative;
+  /* add your styles here */
+}
+
+/**
+ * Thumb.
+ */
+
+.switch-track::after {
+  content: '';
+  position: absolute;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  /* add your styles here */
+}
+
+/* ----------------------------------------------------------------------------
+ * Switch State hooks
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Hover.
+ */
+
+.switch:hover { 
+  /* add your styles here */
+}
+
+/**
+ * Focus.
+ */
+
+.switch-input:focus-visible + .switch-track {
+  /* add your focus styles here */
+}
+
+/**
+ * Active (checked) state. `:has()` lets the wrapper
+ * react to the inner input's `:checked` state.
+ */
+
+.switch:has(.switch-input:checked) {
+  /* add your styles here */
+}
+
+/**
+ * Checked-state track.
+ */
+
+.switch:has(.switch-input:checked) .switch-track {
+  /* add your checked track styles here */
+}
+
+/**
+ * Checked-state thumb position.
+ */
+
+.switch:has(.switch-input:checked) .switch-track::after {
+  transform: translateX(var(--switch-thumb-translate));
+}

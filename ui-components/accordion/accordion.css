@@ -1,0 +1,114 @@
+/* ----------------------------------------------------------------------------
+ * Details
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * If you need to support browsers without `::details-content`
+ * (pre-late 2024), add `overflow: hidden` to `.accordion > details`
+ * to prevent visual overflow during CSS transitions.
+ * On current browsers, clipping is handled by `overflow: clip`
+ * directly on `::details-content`.
+ */
+
+.accordion > details {
+  /* add your styles here */
+}
+
+/**
+ * styles of the open `<details>`
+ */
+
+.accordion > details[open] {
+  /* add your styles here */
+}
+
+/* ----------------------------------------------------------------------------
+ * Summary
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Summary row: removes default disclosure marker, lays out title
+ * and chevron with space-between.
+ */
+
+.accordion > details > summary {
+  list-style: none;
+  cursor: pointer;
+  /* add your styles here */
+}
+
+/**
+ * Hover state on summary row.
+ */
+
+.accordion > details > summary:hover { 
+  /* add your styles here */
+}
+
+/**
+ * Hide the legacy WebKit disclosure triangle.
+ */
+
+.accordion > details > summary::-webkit-details-marker { 
+  display: none; 
+}
+
+/* ----------------------------------------------------------------------------
+ * Chevron
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Chevron / "+" indicator that rotates 45° when open (turning
+ * "+" into "×").
+ */
+
+.accordion > details > summary > .chev {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  /* add your styles here */
+}
+
+/**
+ * Open state: rotate chevron to form an "×".
+ */
+
+.accordion > details[open] > summary > .chev {
+  transform: rotate(45deg);
+  /* add your styles here */
+}
+
+/* ----------------------------------------------------------------------------
+ * Open/Close Animation
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Animated open/close using the new `::details-content` pseudo
+ * and `interpolate-size: allow-keywords` which unlocks transitions 
+ * between `0` and `auto` block sizes.
+ *
+ * `content-visibility` is transitioned discretely so the browser
+ * keeps the collapsed/rendered state in sync with the open/close
+ * transition.
+ */
+
+@supports selector(details::details-content) and (interpolate-size: allow-keywords) {
+
+  /**
+   * Enables transitions to and from `auto` sizes globally.
+   * Scoped inside `@supports` so it only applies in browsers
+   * that understand `interpolate-size`.
+   */
+
+  .accordion {
+    interpolate-size: allow-keywords;
+  }
+
+  .accordion > details::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size 320ms cubic-bezier(0.22, 1, 0.36, 1), content-visibility 320ms allow-discrete;
+  }
+
+  .accordion > details[open]::details-content {
+    block-size: auto;
+  }
+}

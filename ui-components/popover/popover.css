@@ -1,0 +1,112 @@
+/* ----------------------------------------------------------------------------
+ * Popover
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Native popover panel.
+ *
+ * The popover element stays visually neutral and moves into the
+ * top layer when opened. Use `.popover-inner` for the visible
+ * surface and custom presentation styles.
+ */
+
+.popover {
+  margin: auto;
+  overflow: visible;
+  /* add your styles here */
+}
+
+/**
+ * Visible popover content wrapper.
+ * Use this element for custom spacing, surface, border, shadow, etc.
+ */
+
+.popover-inner {
+  /* add your styles here */
+}
+
+/* ----------------------------------------------------------------------------
+ * Popover close button
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Explicit close control.
+ */
+
+.popover-close {
+  /* add your styles here */
+}
+
+/* ----------------------------------------------------------------------------
+ * Popover Animation (Top Layer)
+ * ---------------------------------------------------------------------------- */
+
+ /**
+ * Closed-state styling for the popover panel.
+ *
+ * Uses the new `transition-behavior` / `allow-discrete` mechanism
+ * so the `display: none → block` and top-layer `overlay` changes
+ * animate smoothly instead of snapping. Without `allow-discrete`,
+ * the popover would appear and disappear instantly.
+ */
+
+.popover {
+  opacity: 0;
+  transition:
+    opacity 240ms,
+    overlay 240ms allow-discrete,
+    display 240ms allow-discrete;
+}
+
+/**
+ * Open state: full opacity.
+ *
+ * `:popover-open` only matches the popover while it is showing.
+ */
+
+.popover:popover-open {
+  opacity: 1;
+}
+
+/**
+ * Initial keyframe override: required so the entrance transition
+ * runs on the first open after the discrete `display` change.
+ */
+
+@starting-style {
+  .popover:popover-open {
+    opacity: 0;
+  }
+}
+
+/**
+ * Backdrop transition hook.
+ *
+ * Add a background here if you want a visible overlay.
+ */
+
+.popover::backdrop {
+  opacity: 0;
+  transition:
+    opacity 240ms,
+    overlay 240ms allow-discrete,
+    display 240ms allow-discrete;
+}
+
+/**
+ * Open backdrop becomes visible.
+ */
+
+.popover:popover-open::backdrop { 
+  opacity: 1; 
+}
+
+/**
+ * Initial keyframe override for the backdrop, same reason as above.
+ */
+
+@starting-style {
+  .popover:popover-open::backdrop { 
+    opacity: 0; 
+  }
+}

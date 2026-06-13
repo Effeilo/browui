@@ -1,0 +1,16 @@
+<button type="button" commandfor="native-dialog" command="show-modal">
+  Open modal
+</button>
+
+<dialog id="native-dialog" class="modal" aria-labelledby="modal-title">
+  <div class="modal-inner">
+    <button class="modal-close" type="button" commandfor="native-dialog" command="request-close" aria-label="Close">×</button>
+
+    <h2 id="modal-title">Modal title</h2>
+
+    <!-- content -->
+
+    <button type="button" commandfor="native-dialog" command="close" value="cancel">Cancel</button>
+    <button type="button" commandfor="native-dialog" command="close" value="ok">OK</button>
+  </div>
+</dialog>

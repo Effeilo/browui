@@ -1,0 +1,74 @@
+/* ----------------------------------------------------------------------------
+ * Native Highlight Tokens
+ * ---------------------------------------------------------------------------- */
+
+:root {
+  --selection-bg: Highlight;
+  --selection-color: HighlightText;
+
+  --search-text-bg: Mark;
+  --search-text-color: MarkText;
+
+  --search-text-current-bg: Highlight;
+  --search-text-current-color: HighlightText;
+}
+
+/* ----------------------------------------------------------------------------
+ * Text Selection
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * :root::selection (not *::selection) respects the special inheritance model
+ * of highlight pseudo-elements. Applying *::selection can disrupt descendant
+ * highlight pseudo-elements in unexpected ways.
+ *
+ * Always declare both background-color and color together; providing only
+ * one leaves the contrast at the browser's mercy.
+ */
+
+:root::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-color);
+}
+
+/* ----------------------------------------------------------------------------
+ * Find-in-Page Highlight
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Styles the matches produced by the browser's in-page search (Ctrl+F / Cmd+F)
+ * via the native CSS Highlight pseudo-element `::search-text`.
+ *
+ * Experimental: unsupported browsers safely ignore these selectors and keep
+ * their native find-in-page highlight.
+ *
+ * Only a restricted set of properties is allowed on highlight pseudo-elements
+ * (color, background-color, text-decoration, text-shadow).
+ * Layout-affecting properties (padding, border, box-shadow…) are ignored.
+ *
+ * @see https://drafts.csswg.org/css-pseudo-4/#highlight-pseudos
+ */
+
+/**
+ * ::search-text - All Matches
+ *
+ * Applies a branded highlight to every occurrence found by the user's
+ * find-in-page query, using the dedicated design tokens.
+ */
+
+:root::search-text {
+  background-color: var(--search-text-bg);
+  color: var(--search-text-color);
+}
+
+/**
+ * ::search-text:current - Active Match
+ *
+ * Highlights the currently focused match (the one the user navigates to with
+ * Enter / arrows) with a stronger color for clear visual distinction.
+ */
+
+:root::search-text:current {
+  background-color: var(--search-text-current-bg);
+  color: var(--search-text-current-color);
+}

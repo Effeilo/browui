@@ -1,0 +1,49 @@
+/* ----------------------------------------------------------------------------
+ * Scroll progress bar
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Hidden by default so unsupported browsers do not show a static bar.
+ * Custom properties expose the visual knobs without changing the mechanism.
+ */
+
+.scroll-progress {
+  --scroll-progress-size: 4px;
+  --scroll-progress-color: currentColor;
+  --scroll-progress-z-index: 100;
+
+  display: none;
+}
+
+/**
+ * Enable the bar only when the browser supports scroll-driven animations.
+ */
+
+@supports (animation-timeline: scroll(root block)) {
+  .scroll-progress {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline: 0;
+    z-index: var(--scroll-progress-z-index);
+    block-size: var(--scroll-progress-size);
+    background: var(--scroll-progress-color);
+    pointer-events: none;
+
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+
+    animation-name: scroll-progress-grow;
+    animation-duration: 1ms;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: scroll(root block);
+  }
+}
+
+/**
+ * Endpoint for the progress animation: full width when fully scrolled.
+ */
+
+@keyframes scroll-progress-grow {
+  to { transform: scaleX(1); }
+}

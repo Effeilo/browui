@@ -1,0 +1,144 @@
+/* ----------------------------------------------------------------------------
+ * Scrollbar Styling
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Scrollbar Tokens
+ *
+ * This block defines the customization contract used by the native scrollbar
+ * rules below. These variables can be overridden by themes, components, or
+ * design tokens without changing the browser-specific implementation.
+ *
+ * The rules intentionally avoid hardcoded visual decisions: colors, sizes,
+ * radius, and hover states are all delegated to CSS custom properties.
+ */
+
+:root {
+  --scrollbar-width: 12px;
+  --scrollbar-height: var(--scrollbar-width);
+  --scrollbar-radius: 999px;
+
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: color-mix(in srgb, currentColor 28%, transparent);
+  --scrollbar-thumb-hover: color-mix(in srgb, currentColor 42%, transparent);
+
+  --scrollbar-width-firefox: auto;
+  --scrollbar-corner: transparent;
+}
+
+/**
+ * Scrollbar Scope
+ *
+ * Scrollbar styling is applied to:
+ * - `html`, for the main viewport scrollbar
+ * - `.ui-scrollbar`, for any custom scrollable container
+ *
+ * Use `.ui-scrollbar` on elements with `overflow: auto`, `overflow-y: auto`,
+ * `overflow: scroll`, or equivalent behavior when the component needs the same
+ * native scrollbar treatment as the page.
+ *
+ * `:where()` keeps selector specificity at zero, making the utility easy to
+ * override locally when a component needs a different scrollbar treatment.
+ */
+
+/**
+ * Firefox Scrollbar (scrollbar-color)
+ *
+ * Applies standard scrollbar styling only in Firefox, allowing more advanced
+ * customization with WebKit pseudo-elements in other modern browsers
+ * (Chrome, Safari, Edge, Opera).
+ *
+ * Without this block being scoped to Firefox, `::-webkit-scrollbar` rules may
+ * be ignored in browsers that support the standard `scrollbar-color` and
+ * `scrollbar-width` properties, because non-auto standard scrollbar values
+ * override WebKit pseudo-element styling.
+ */
+
+@supports (-moz-appearance: none) {
+  :where(html, .ui-scrollbar) {
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-width: var(--scrollbar-width-firefox, auto);
+  }
+}
+
+/**
+ * WebKit Scrollbar (::-webkit-scrollbar)
+ *
+ * Provides advanced scrollbar customization for WebKit/Blink-based browsers
+ * and engines (Chrome, Safari, Edge, Opera).
+ *
+ * Unlike Firefox, which uses the standardized `scrollbar-color` and
+ * `scrollbar-width` properties, WebKit/Blink browsers expose proprietary
+ * pseudo-elements to style each part of the scrollbar individually
+ * (track, thumb, corner, buttons, and interaction states).
+ *
+ * These rules remain fully effective because the standard scrollbar properties
+ * above are explicitly limited to Firefox via `@supports`.
+ *
+ * This approach ensures:
+ * - A single utility class for reusable scrollbar behavior
+ * - Theme-driven visual customization through CSS variables
+ * - No conflicts between standard and proprietary implementations
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar
+ */
+
+@supports selector(::-webkit-scrollbar) {
+  /**
+   * WebKit Scrollbar - Track Container
+   *
+   * Defines the physical scrollbar box dimensions.
+   * The actual visual track color is handled separately by
+   * `::-webkit-scrollbar-track`.
+   */
+
+  :where(html, .ui-scrollbar)::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+    height: var(--scrollbar-height, var(--scrollbar-width));
+  }
+
+  /**
+   * WebKit Scrollbar - Track
+   *
+   * Styles the track area: the groove the thumb moves along.
+   */
+
+  :where(html, .ui-scrollbar)::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track);
+  }
+
+  /**
+   * WebKit Scrollbar - Thumb
+   *
+   * Styles the draggable thumb element.
+   * The radius is tokenized so themes can choose between square,
+   * rounded, or pill-shaped scrollbars.
+   */
+
+  :where(html, .ui-scrollbar)::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: var(--scrollbar-radius, 999px);
+  }
+
+  /**
+   * WebKit Scrollbar - Thumb Hover
+   *
+   * Uses an optional hover token for interactive feedback.
+   * If no hover token is provided, it falls back to the default thumb color.
+   */
+
+  :where(html, .ui-scrollbar)::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover, var(--scrollbar-thumb));
+  }
+
+  /**
+   * WebKit Scrollbar - Corner
+   *
+   * Styles the corner where vertical and horizontal scrollbars meet.
+   * Defaults to transparent to avoid an unwanted filled square.
+   */
+
+  :where(html, .ui-scrollbar)::-webkit-scrollbar-corner {
+    background: var(--scrollbar-corner, transparent);
+  }
+}

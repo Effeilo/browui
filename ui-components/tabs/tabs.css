@@ -1,0 +1,147 @@
+/* ----------------------------------------------------------------------------
+ * Tabs Container
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Outer tabs panel.
+ */
+
+.tabs {
+  min-inline-size: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  /* add your styles here */
+}
+
+/**
+ * Visually hide the radio inputs that drive the state. They
+ * remain in the DOM and accessible to assistive tech via the
+ * associated `<label>` elements.
+ */
+
+.tabs > input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  inline-size: 1px;
+  block-size: 1px;
+}
+
+/* ----------------------------------------------------------------------------
+ * Tab List & Labels
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Horizontal row of tab labels.
+ */
+
+.tab-list {
+  position: relative;
+  display: flex;
+  /* add your styles here */
+}
+
+/**
+ * Each tab label fills 1/N of the row.
+ */
+
+.tab-label {
+  flex: 1;
+  user-select: none;
+  /* add your styles here */
+}
+
+/**
+ * Optional hover state for pointer users.
+ */
+
+.tab-label:hover { 
+  /* add your styles here */
+}
+
+/* ----------------------------------------------------------------------------
+ * :has() Driven State
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Focus management.
+ */
+
+.tabs:has(#example-tab-1:focus-visible) .tab-label[for="example-tab-1"],
+.tabs:has(#example-tab-2:focus-visible) .tab-label[for="example-tab-2"],
+.tabs:has(#example-tab-3:focus-visible) .tab-label[for="example-tab-3"] {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/**
+ * Highlight the active tab label (matching the checked radio).
+ */
+
+.tabs:has(#example-tab-1:checked) .tab-label[for="example-tab-1"],
+.tabs:has(#example-tab-2:checked) .tab-label[for="example-tab-2"],
+.tabs:has(#example-tab-3:checked) .tab-label[for="example-tab-3"] {
+  /* add your styles here */
+}
+
+/* ----------------------------------------------------------------------------
+ * Tab Panels
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Stack all panels in the same grid area so only the active one
+ * is visible. `grid-template: "stack"` is the named-area shorthand
+ * that creates a single overlapping cell.
+ */
+
+.tab-panels {
+  display: grid;
+  grid-template: "stack";
+}
+
+/**
+ * All panels start hidden (faded out and pointer-events disabled 
+ * to prevent click-through).
+ */
+
+.tab-panel {
+  grid-area: stack;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 320ms, visibility 320ms allow-discrete;
+}
+
+/**
+ * Active panel matches the checked radio: visible and interactive 
+ * again.
+ */
+
+.tabs:has(#example-tab-1:checked) .tab-panel[data-tab="1"],
+.tabs:has(#example-tab-2:checked) .tab-panel[data-tab="2"],
+.tabs:has(#example-tab-3:checked) .tab-panel[data-tab="3"] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ----------------------------------------------------------------------------
+ * Tabs A11y
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Visually hide accessibility-only content while keeping it available
+ * to assistive technologies.
+ */
+
+.sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

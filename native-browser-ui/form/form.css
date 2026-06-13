@@ -1,0 +1,181 @@
+/* ----------------------------------------------------------------------------
+ * Form Theme Tokens
+ * ---------------------------------------------------------------------------- */
+
+:root {
+  /* Accent */
+  --form-accent-color: var(--color-accent);
+
+  /* Text editing */
+  --form-caret-color: var(--form-accent-color);
+  --form-placeholder-color: var(--color-text-muted);
+
+  /* Validation */
+  --form-valid-bg: var(--color-success-surface);
+  --form-valid-border-color: var(--color-success);
+
+  --form-invalid-bg: var(--color-danger-surface);
+  --form-invalid-border-color: var(--color-danger);
+  --form-invalid-placeholder-color: var(--color-danger);
+
+  /* Progress */
+  --form-progress-track-bg: var(--color-surface-muted);
+  --form-progress-value-bg: var(--form-accent-color);
+
+  /* Range */
+  --form-range-thumb-bg: var(--form-accent-color);
+  --form-range-thumb-border-color: transparent;
+}
+
+/* ----------------------------------------------------------------------------
+ * Accent Color
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Checkboxes, Radios, Ranges, Meters, Selects
+ *
+ * Uses `accent-color` to tint supported native UI controls.
+ * Support is most consistent for checkboxes, radios, ranges, and progress.
+ * `<meter>` and `<select>` are included as progressive enhancement: browsers
+ * that expose native accent hooks will use the token, while others keep their
+ * default UI.
+ */
+
+:is(input[type="checkbox"], input[type="radio"], input[type="range"], meter, select) {
+  accent-color: var(--form-accent-color);
+}
+
+/* ----------------------------------------------------------------------------
+ * Placeholder
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * opacity: 1 counteracts the default opacity some browsers apply.
+ * A placeholder is example text, not a label, keep it visibly secondary.
+ */
+
+::placeholder {
+  color: var(--form-placeholder-color);
+  opacity: 1;
+}
+
+/* ----------------------------------------------------------------------------
+ * Caret Color
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Applies the primary accent color to the text cursor in editable fields,
+ * providing a branded feel without affecting text color.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/caret-color
+ */
+
+:is(input, textarea, [contenteditable="true"]) {
+  caret-color: var(--form-caret-color);
+}
+
+/* ----------------------------------------------------------------------------
+ * Form Validation States
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Visual feedback for valid and invalid field states using :user-valid / :user-invalid.
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/:user-valid
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid
+ */
+
+/**
+ * Valid Field State
+ * Applies the valid state surface and border tokens to fields that have been 
+ * interacted with and contain valid input. Uses `:user-valid` (triggered 
+ * only after user interaction, unlike `:valid` which fires immediately on 
+ * page load).
+ */
+
+:is(input, textarea, select):user-valid {
+  background-color: var(--form-valid-bg);
+  border-color: var(--form-valid-border-color);
+}
+
+/**
+ * Invalid Field State
+ * Applies the invalid state surface and border tokens to fields that have 
+ * been interacted with and contain invalid input. Uses `:user-invalid` for 
+ * the same post-interaction reason.
+ */
+
+:is(input, textarea, select):user-invalid {
+  background-color: var(--form-invalid-bg);
+  border-color: var(--form-invalid-border-color);
+}
+
+/**
+ * Invalid Placeholder Color
+ * Uses the invalid placeholder token inside invalid fields to reinforce
+ * the error state even before the user has typed anything.
+ */
+
+:is(input, textarea):user-invalid::placeholder {
+  color: var(--form-invalid-placeholder-color);
+}
+
+/* ----------------------------------------------------------------------------
+ * Progress Bar
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Cross-browser styling for the <progress> element track and filled value
+ */
+
+/**
+ * Progress - Accent Color
+ * Sets `accent-color` on `<progress>` separately because its filled portion
+ * uses a distinct token (`--form-progress-value-bg`) from the primary accent.
+ */
+
+progress {
+  accent-color: var(--form-progress-value-bg);
+}
+
+/**
+ * Progress Bar - WebKit Track
+ * Styles the unfilled background track of `<progress>` in WebKit browsers.
+ */
+
+progress::-webkit-progress-bar {
+  background-color: var(--form-progress-track-bg);
+}
+
+/**
+ * Progress Bar - WebKit Value
+ * Styles the filled portion of `<progress>` in WebKit browsers.
+ */
+
+progress::-webkit-progress-value {
+  background-color: var(--form-progress-value-bg);
+}
+
+/**
+ * Progress Bar - Firefox Value
+ * Styles the filled portion of `<progress>` in Firefox.
+ * Firefox uses a separate pseudo-element from WebKit.
+ */
+
+progress::-moz-progress-bar {
+  background-color: var(--form-progress-value-bg);
+}
+
+/**
+ * Range input - WebKit & Firefox thumb
+ *
+ * A minimal thumb override: only background and border.
+ * For full track + thumb customisation (appearance: none, rail drawing)
+ * add those rules in the component or application layer, that level of
+ * control is a design decision, not a base normalisation.
+ */
+
+input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-moz-range-thumb {
+  background-color: var(--form-range-thumb-bg);
+  border-color: var(--form-range-thumb-border-color);
+}

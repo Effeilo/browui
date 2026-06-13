@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 68" width="96" height="68">
+  <mask id="scrollbar-cut">
+    <rect width="96" height="68" fill="white"></rect>
+    <rect x="70" y="10" width="4" height="34" rx="2" fill="black"></rect>
+  </mask>
+  <g mask="url(#scrollbar-cut)">
+    <rect x="18" y="5" width="60" height="44" rx="3" fill="#ffffff"></rect>
+  </g>
+  <rect x="70" y="13" width="4" height="12" rx="2" fill="#374151"></rect>
+  <rect x="22" y="11" width="42" height="12" rx="2" fill="#374151"></rect>
+  <rect x="22" y="27" width="22" height="2.5" rx="1.25" fill="#374151"></rect>
+  <rect x="22" y="33" width="42" height="1.5" rx="0.75" fill="#374151"></rect>
+  <rect x="22" y="37" width="36" height="1.5" rx="0.75" fill="#374151"></rect>
+  <rect x="22" y="41" width="40" height="1.5" rx="0.75" fill="#374151"></rect>
+  <rect x="22" y="45" width="30" height="1.5" rx="0.75" fill="#374151"></rect>
+</svg>

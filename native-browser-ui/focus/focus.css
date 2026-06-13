@@ -1,0 +1,55 @@
+/* ----------------------------------------------------------------------------
+ * Focus Variables
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Focus indicator defaults
+ *
+ * These custom properties define the default focus indicator used by the
+ * focus mechanisms below.
+ * Override them in a theme, component, or local scope to change the visual
+ * result without changing the focus behavior.
+ */
+
+:root {
+  --focus-width: 2px;
+  --focus-color: currentColor;
+  --focus-offset: 2px;
+}
+
+/* ----------------------------------------------------------------------------
+ * Focus Management
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Focus fallback
+ *
+ * Ensures focused interactive elements have a visible indicator by default.
+ * In browsers that support `:focus-visible`, this fallback is refined below.
+ */
+
+:where(a[href], button, input, select, textarea, summary, [contenteditable]:not([contenteditable="false"]), [tabindex]:not([tabindex^="-"])):focus {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: var(--focus-offset);
+}
+
+/**
+ * Removes the fallback indicator when the browser determines that focus
+ * visibility is not needed, for example after pointer interaction.
+ */
+
+:where(a[href], button, input, select, textarea, summary, [contenteditable]:not([contenteditable="false"]), [tabindex]:not([tabindex^="-"])):focus:not(:focus-visible) {
+  outline: none;
+}
+
+/**
+ * Visible focus
+ *
+ * Applies the focus indicator when the browser determines that focus should
+ * be visible, usually during keyboard or sequential navigation.
+ */
+
+:where(a[href], button, input, select, textarea, summary, [contenteditable]:not([contenteditable="false"]), [tabindex]:not([tabindex^="-"])):focus-visible {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: var(--focus-offset);
+}

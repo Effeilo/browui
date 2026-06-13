@@ -1,0 +1,238 @@
+/* ----------------------------------------------------------------------------
+ * Carousel Containers
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Native horizontal carousel container.
+ *
+ * The carousel remains visually neutral and uses native scrolling
+ * as its core mechanism. Users can scroll with touch, trackpad,
+ * mouse, keyboard, or browser-generated controls when supported.
+ */
+
+.carousel {
+  --carousel-slide-size: min(380px, 80vw);
+  --carousel-scrollbar: currentColor;
+
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: var(--carousel-scrollbar) transparent;
+  scrollbar-width: auto;
+  /* add your styles here */
+}
+
+/**
+ * Smooth scrolling enhancement.
+ *
+ * Only enabled when the user has not requested reduced motion.
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .carousel {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+ * Carousel Slide
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Individual carousel snap target.
+ *
+ * The slide size is controlled with `--carousel-slide-size`, so it
+ * can be customized without changing the carousel mechanics.
+ */
+
+.slide {
+  flex: 0 0 var(--carousel-slide-size);
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+/**
+ * Visible slide content wrapper.
+ *
+ * Use this element for custom spacing, surface, border, shadow,
+ * media styling, or any other presentation styles.
+ */
+
+.slide-inner {
+  /* add your styles here */
+}
+
+/* ----------------------------------------------------------------------------
+ * Carousel Initial Position
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Initial scroll target.
+ *
+ * When supported, the `.origin` slide is used as the initial snap
+ * target when the carousel is first rendered.
+ */
+
+.carousel .origin {
+  scroll-initial-target: nearest;
+}
+
+/* ----------------------------------------------------------------------------
+ * Carousel Buttons
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Native carousel buttons.
+ *
+ * `::scroll-button()` generates browser-managed previous and next
+ * controls. Without support, the carousel remains fully scrollable.
+ */
+
+@supports selector(.carousel::scroll-button(right)) {
+
+  .carousel {
+    position: relative;
+  }
+
+  /**
+   * Shared button mechanics.
+   *
+   * Keep visual styles here: size, color, border, background,
+   * placement offsets, etc.
+   */
+
+  .carousel::scroll-button(left),
+  .carousel::scroll-button(right) {
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    /* add your styles here */
+  }
+
+  /**
+   * Button hover state.
+   */
+
+  .carousel::scroll-button(left):hover,
+  .carousel::scroll-button(right):hover {
+    /* add your styles here */
+  }
+
+  /**
+   * Disabled button state.
+   *
+   * The browser disables the previous or next button automatically
+   * when the scroll container reaches either edge.
+   */
+
+  .carousel::scroll-button(left):disabled,
+  .carousel::scroll-button(right):disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /**
+   * Previous slide button.
+   */
+
+  .carousel::scroll-button(left) {
+    content: "‹" / "Previous slide";
+    left: 0;
+  }
+
+  /**
+   * Next slide button.
+   */
+
+  .carousel::scroll-button(right) {
+    content: "›" / "Next slide";
+    right: 0;
+  }
+
+}
+
+/* ----------------------------------------------------------------------------
+ * Carousel Markers
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Native carousel markers.
+ *
+ * `::scroll-marker` creates browser-managed navigation markers for
+ * each slide. The marker group is placed after the carousel content.
+ */
+
+@supports selector(.slide::scroll-marker) {
+
+  .carousel {
+    scroll-marker-group: after;
+  }
+
+  /**
+   * Marker group container.
+   *
+   * Use this pseudo-element to control marker layout, spacing, and
+   * placement.
+   */
+
+  .carousel::scroll-marker-group {
+    display: flex;
+    /* add your styles here */
+  }
+
+  /**
+   * Individual slide marker.
+   *
+   * Each marker gets its accessible label from the slide's
+   * `data-label` attribute.
+   */
+
+  .carousel > .slide::scroll-marker {
+    content: attr(data-label);
+    /* add your styles here */
+  }
+
+  /**
+   * Current slide marker.
+   *
+   * Matches the marker associated with the currently snapped slide.
+   */
+
+  .carousel > .slide::scroll-marker:target-current {
+    /* add your styles here */
+  }
+
+}
+
+/* ----------------------------------------------------------------------------
+ * Carousel Active slide
+ * ---------------------------------------------------------------------------- */
+
+/**
+ * Scroll-state container setup.
+ *
+ * Enables container queries based on whether an individual slide is
+ * currently snapped inside the carousel.
+ */
+
+@supports (container-type: scroll-state) {
+
+  .slide {
+    container-type: scroll-state;
+  }
+
+  /**
+   * Current snapped slide.
+   *
+   * Use this block to style `.slide-inner` only when its parent slide
+   * is the active snapped item.
+   */
+
+  @container scroll-state(snapped: x) {
+    .slide-inner {
+      /* add your styles here */
+    }
+  }
+
+}
